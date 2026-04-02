@@ -43,7 +43,8 @@ router.get("/projects", async (req, res): Promise<void> => {
     .groupBy(projectsTable.id)
     .orderBy(projectsTable.createdAt);
 
-  res.json(ListProjectsResponse.parse(projects));
+  const parsed_projects = projects.map(p => ({ ...p, funnelCount: Number(p.funnelCount) }));
+  res.json(ListProjectsResponse.parse(parsed_projects));
 });
 
 router.post("/projects", async (req, res): Promise<void> => {
@@ -90,7 +91,7 @@ router.get("/projects/:id", async (req, res): Promise<void> => {
     return;
   }
 
-  res.json(GetProjectResponse.parse(project));
+  res.json(GetProjectResponse.parse({ ...project, funnelCount: Number(project.funnelCount) }));
 });
 
 router.patch("/projects/:id", async (req, res): Promise<void> => {
@@ -139,7 +140,7 @@ router.patch("/projects/:id", async (req, res): Promise<void> => {
     .where(eq(projectsTable.id, params.data.id))
     .groupBy(projectsTable.id);
 
-  res.json(UpdateProjectResponse.parse(project));
+  res.json(UpdateProjectResponse.parse({ ...project, funnelCount: Number(project.funnelCount) }));
 });
 
 router.delete("/projects/:id", async (req, res): Promise<void> => {
