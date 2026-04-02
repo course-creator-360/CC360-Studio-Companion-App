@@ -14,3 +14,252 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * @summary List all projects
+ */
+export const ListProjectsQueryParams = zod.object({
+  status: zod.enum(["draft", "published", "archived"]).optional(),
+});
+
+export const ListProjectsResponseItem = zod.object({
+  id: zod.number(),
+  name: zod.string(),
+  status: zod.enum(["draft", "published", "archived"]),
+  description: zod.string().nullish(),
+  funnelCount: zod.number(),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+export const ListProjectsResponse = zod.array(ListProjectsResponseItem);
+
+/**
+ * @summary Create a new project
+ */
+export const CreateProjectBody = zod.object({
+  name: zod.string(),
+  description: zod.string().nullish(),
+});
+
+/**
+ * @summary Get a project by ID
+ */
+export const GetProjectParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const GetProjectResponse = zod.object({
+  id: zod.number(),
+  name: zod.string(),
+  status: zod.enum(["draft", "published", "archived"]),
+  description: zod.string().nullish(),
+  funnelCount: zod.number(),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+
+/**
+ * @summary Update a project
+ */
+export const UpdateProjectParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const UpdateProjectBody = zod.object({
+  name: zod.string().optional(),
+  status: zod.enum(["draft", "published", "archived"]).optional(),
+  description: zod.string().nullish(),
+});
+
+export const UpdateProjectResponse = zod.object({
+  id: zod.number(),
+  name: zod.string(),
+  status: zod.enum(["draft", "published", "archived"]),
+  description: zod.string().nullish(),
+  funnelCount: zod.number(),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+
+/**
+ * @summary Delete a project
+ */
+export const DeleteProjectParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+/**
+ * @summary List all funnel strategies
+ */
+export const ListFunnelsQueryParams = zod.object({
+  projectId: zod.coerce.number().optional(),
+});
+
+export const ListFunnelsResponseItem = zod.object({
+  id: zod.number(),
+  projectId: zod.number().nullish(),
+  targetAudience: zod.string(),
+  coreOffer: zod.string(),
+  conversionGoal: zod.enum([
+    "automated_webinar",
+    "lead_magnet",
+    "direct_sales",
+    "free_consultation",
+    "high_ticket_application",
+  ]),
+  trafficSource: zod.enum(["meta_ads", "organic_seo", "youtube", "linkedin"]),
+  buildProgress: zod.number(),
+  aiEngineStatus: zod.enum(["ready", "analyzing", "complete"]),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+export const ListFunnelsResponse = zod.array(ListFunnelsResponseItem);
+
+/**
+ * @summary Create a new funnel strategy
+ */
+export const CreateFunnelBody = zod.object({
+  projectId: zod.number().nullish(),
+  targetAudience: zod.string(),
+  coreOffer: zod.string(),
+  conversionGoal: zod.enum([
+    "automated_webinar",
+    "lead_magnet",
+    "direct_sales",
+    "free_consultation",
+    "high_ticket_application",
+  ]),
+  trafficSource: zod.enum(["meta_ads", "organic_seo", "youtube", "linkedin"]),
+});
+
+/**
+ * @summary Get a funnel by ID
+ */
+export const GetFunnelParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const GetFunnelResponse = zod.object({
+  id: zod.number(),
+  projectId: zod.number().nullish(),
+  targetAudience: zod.string(),
+  coreOffer: zod.string(),
+  conversionGoal: zod.enum([
+    "automated_webinar",
+    "lead_magnet",
+    "direct_sales",
+    "free_consultation",
+    "high_ticket_application",
+  ]),
+  trafficSource: zod.enum(["meta_ads", "organic_seo", "youtube", "linkedin"]),
+  buildProgress: zod.number(),
+  aiEngineStatus: zod.enum(["ready", "analyzing", "complete"]),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+
+/**
+ * @summary Update a funnel
+ */
+export const UpdateFunnelParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const UpdateFunnelBody = zod.object({
+  targetAudience: zod.string().optional(),
+  coreOffer: zod.string().optional(),
+  conversionGoal: zod
+    .enum([
+      "automated_webinar",
+      "lead_magnet",
+      "direct_sales",
+      "free_consultation",
+      "high_ticket_application",
+    ])
+    .optional(),
+  trafficSource: zod
+    .enum(["meta_ads", "organic_seo", "youtube", "linkedin"])
+    .optional(),
+});
+
+export const UpdateFunnelResponse = zod.object({
+  id: zod.number(),
+  projectId: zod.number().nullish(),
+  targetAudience: zod.string(),
+  coreOffer: zod.string(),
+  conversionGoal: zod.enum([
+    "automated_webinar",
+    "lead_magnet",
+    "direct_sales",
+    "free_consultation",
+    "high_ticket_application",
+  ]),
+  trafficSource: zod.enum(["meta_ads", "organic_seo", "youtube", "linkedin"]),
+  buildProgress: zod.number(),
+  aiEngineStatus: zod.enum(["ready", "analyzing", "complete"]),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+
+/**
+ * @summary Delete a funnel
+ */
+export const DeleteFunnelParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+/**
+ * @summary Initialize market research for a funnel
+ */
+export const InitializeFunnelParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const InitializeFunnelResponse = zod.object({
+  id: zod.number(),
+  projectId: zod.number().nullish(),
+  targetAudience: zod.string(),
+  coreOffer: zod.string(),
+  conversionGoal: zod.enum([
+    "automated_webinar",
+    "lead_magnet",
+    "direct_sales",
+    "free_consultation",
+    "high_ticket_application",
+  ]),
+  trafficSource: zod.enum(["meta_ads", "organic_seo", "youtube", "linkedin"]),
+  buildProgress: zod.number(),
+  aiEngineStatus: zod.enum(["ready", "analyzing", "complete"]),
+  createdAt: zod.coerce.date(),
+  updatedAt: zod.coerce.date(),
+});
+
+/**
+ * @summary Dashboard summary with stats
+ */
+export const GetDashboardSummaryResponse = zod.object({
+  totalProjects: zod.number(),
+  draftProjects: zod.number(),
+  publishedProjects: zod.number(),
+  totalFunnels: zod.number(),
+  averageBuildProgress: zod.number(),
+  aiEngineReady: zod.boolean(),
+});
+
+/**
+ * @summary Recent activity feed
+ */
+export const GetRecentActivityResponseItem = zod.object({
+  id: zod.number(),
+  type: zod.enum([
+    "project_created",
+    "funnel_created",
+    "funnel_initialized",
+    "project_published",
+  ]),
+  description: zod.string(),
+  timestamp: zod.coerce.date(),
+});
+export const GetRecentActivityResponse = zod.array(
+  GetRecentActivityResponseItem,
+);

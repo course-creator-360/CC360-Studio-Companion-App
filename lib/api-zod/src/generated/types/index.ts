@@ -6,4 +6,25 @@
  * OpenAPI spec version: 0.1.0
  */
 
+export * from "./activityItem";
+export * from "./activityItemType";
+export * from "./createFunnelBody";
+export * from "./createFunnelBodyConversionGoal";
+export * from "./createFunnelBodyTrafficSource";
+export * from "./createProjectBody";
+export * from "./dashboardSummary";
+export * from "./funnel";
+export * from "./funnelAiEngineStatus";
+export * from "./funnelConversionGoal";
+export * from "./funnelTrafficSource";
 export * from "./healthStatus";
+export * from "./listFunnelsParams";
+export * from "./listProjectsParams";
+export * from "./listProjectsStatus";
+export * from "./project";
+export * from "./projectStatus";
+export * from "./updateFunnelBody";
+export * from "./updateFunnelBodyConversionGoal";
+export * from "./updateFunnelBodyTrafficSource";
+export * from "./updateProjectBody";
+export * from "./updateProjectBodyStatus";

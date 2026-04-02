@@ -8,3 +8,189 @@
 export interface HealthStatus {
   status: string;
 }
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus];
+
+export const ProjectStatus = {
+  draft: "draft",
+  published: "published",
+  archived: "archived",
+} as const;
+
+export interface Project {
+  id: number;
+  name: string;
+  status: ProjectStatus;
+  /** @nullable */
+  description?: string | null;
+  funnelCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateProjectBody {
+  name: string;
+  /** @nullable */
+  description?: string | null;
+}
+
+export type UpdateProjectBodyStatus =
+  (typeof UpdateProjectBodyStatus)[keyof typeof UpdateProjectBodyStatus];
+
+export const UpdateProjectBodyStatus = {
+  draft: "draft",
+  published: "published",
+  archived: "archived",
+} as const;
+
+export interface UpdateProjectBody {
+  name?: string;
+  status?: UpdateProjectBodyStatus;
+  /** @nullable */
+  description?: string | null;
+}
+
+export type FunnelConversionGoal =
+  (typeof FunnelConversionGoal)[keyof typeof FunnelConversionGoal];
+
+export const FunnelConversionGoal = {
+  automated_webinar: "automated_webinar",
+  lead_magnet: "lead_magnet",
+  direct_sales: "direct_sales",
+  free_consultation: "free_consultation",
+  high_ticket_application: "high_ticket_application",
+} as const;
+
+export type FunnelTrafficSource =
+  (typeof FunnelTrafficSource)[keyof typeof FunnelTrafficSource];
+
+export const FunnelTrafficSource = {
+  meta_ads: "meta_ads",
+  organic_seo: "organic_seo",
+  youtube: "youtube",
+  linkedin: "linkedin",
+} as const;
+
+export type FunnelAiEngineStatus =
+  (typeof FunnelAiEngineStatus)[keyof typeof FunnelAiEngineStatus];
+
+export const FunnelAiEngineStatus = {
+  ready: "ready",
+  analyzing: "analyzing",
+  complete: "complete",
+} as const;
+
+export interface Funnel {
+  id: number;
+  /** @nullable */
+  projectId?: number | null;
+  targetAudience: string;
+  coreOffer: string;
+  conversionGoal: FunnelConversionGoal;
+  trafficSource: FunnelTrafficSource;
+  buildProgress: number;
+  aiEngineStatus: FunnelAiEngineStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type CreateFunnelBodyConversionGoal =
+  (typeof CreateFunnelBodyConversionGoal)[keyof typeof CreateFunnelBodyConversionGoal];
+
+export const CreateFunnelBodyConversionGoal = {
+  automated_webinar: "automated_webinar",
+  lead_magnet: "lead_magnet",
+  direct_sales: "direct_sales",
+  free_consultation: "free_consultation",
+  high_ticket_application: "high_ticket_application",
+} as const;
+
+export type CreateFunnelBodyTrafficSource =
+  (typeof CreateFunnelBodyTrafficSource)[keyof typeof CreateFunnelBodyTrafficSource];
+
+export const CreateFunnelBodyTrafficSource = {
+  meta_ads: "meta_ads",
+  organic_seo: "organic_seo",
+  youtube: "youtube",
+  linkedin: "linkedin",
+} as const;
+
+export interface CreateFunnelBody {
+  /** @nullable */
+  projectId?: number | null;
+  targetAudience: string;
+  coreOffer: string;
+  conversionGoal: CreateFunnelBodyConversionGoal;
+  trafficSource: CreateFunnelBodyTrafficSource;
+}
+
+export type UpdateFunnelBodyConversionGoal =
+  (typeof UpdateFunnelBodyConversionGoal)[keyof typeof UpdateFunnelBodyConversionGoal];
+
+export const UpdateFunnelBodyConversionGoal = {
+  automated_webinar: "automated_webinar",
+  lead_magnet: "lead_magnet",
+  direct_sales: "direct_sales",
+  free_consultation: "free_consultation",
+  high_ticket_application: "high_ticket_application",
+} as const;
+
+export type UpdateFunnelBodyTrafficSource =
+  (typeof UpdateFunnelBodyTrafficSource)[keyof typeof UpdateFunnelBodyTrafficSource];
+
+export const UpdateFunnelBodyTrafficSource = {
+  meta_ads: "meta_ads",
+  organic_seo: "organic_seo",
+  youtube: "youtube",
+  linkedin: "linkedin",
+} as const;
+
+export interface UpdateFunnelBody {
+  targetAudience?: string;
+  coreOffer?: string;
+  conversionGoal?: UpdateFunnelBodyConversionGoal;
+  trafficSource?: UpdateFunnelBodyTrafficSource;
+}
+
+export interface DashboardSummary {
+  totalProjects: number;
+  draftProjects: number;
+  publishedProjects: number;
+  totalFunnels: number;
+  averageBuildProgress: number;
+  aiEngineReady: boolean;
+}
+
+export type ActivityItemType =
+  (typeof ActivityItemType)[keyof typeof ActivityItemType];
+
+export const ActivityItemType = {
+  project_created: "project_created",
+  funnel_created: "funnel_created",
+  funnel_initialized: "funnel_initialized",
+  project_published: "project_published",
+} as const;
+
+export interface ActivityItem {
+  id: number;
+  type: ActivityItemType;
+  description: string;
+  timestamp: string;
+}
+
+export type ListProjectsParams = {
+  status?: ListProjectsStatus;
+};
+
+export type ListProjectsStatus =
+  (typeof ListProjectsStatus)[keyof typeof ListProjectsStatus];
+
+export const ListProjectsStatus = {
+  draft: "draft",
+  published: "published",
+  archived: "archived",
+} as const;
+
+export type ListFunnelsParams = {
+  projectId?: number;
+};

@@ -10,6 +10,12 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: projects
+    description: Project operations
+  - name: funnels
+    description: Funnel strategy operations
+  - name: dashboard
+    description: Dashboard summary operations
 paths:
   /healthz:
     get:
@@ -24,6 +30,253 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /projects:
+    get:
+      operationId: listProjects
+      tags: [projects]
+      summary: List all projects
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [draft, published, archived]
+      responses:
+        "200":
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+    post:
+      operationId: createProject
+      tags: [projects]
+      summary: Create a new project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProjectBody"
+      responses:
+        "201":
+          description: Created project
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+
+  /projects/{id}:
+    get:
+      operationId: getProject
+      tags: [projects]
+      summary: Get a project by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Project detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateProject
+      tags: [projects]
+      summary: Update a project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProjectBody"
+      responses:
+        "200":
+          description: Updated project
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteProject
+      tags: [projects]
+      summary: Delete a project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /funnels:
+    get:
+      operationId: listFunnels
+      tags: [funnels]
+      summary: List all funnel strategies
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of funnels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Funnel"
+    post:
+      operationId: createFunnel
+      tags: [funnels]
+      summary: Create a new funnel strategy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFunnelBody"
+      responses:
+        "201":
+          description: Created funnel
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Funnel"
+
+  /funnels/{id}:
+    get:
+      operationId: getFunnel
+      tags: [funnels]
+      summary: Get a funnel by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Funnel detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Funnel"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateFunnel
+      tags: [funnels]
+      summary: Update a funnel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateFunnelBody"
+      responses:
+        "200":
+          description: Updated funnel
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Funnel"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteFunnel
+      tags: [funnels]
+      summary: Delete a funnel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /funnels/{id}/initialize:
+    post:
+      operationId: initializeFunnel
+      tags: [funnels]
+      summary: Initialize market research for a funnel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Funnel initialized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Funnel"
+        "404":
+          description: Not found
+
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      summary: Dashboard summary with stats
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
+  /dashboard/recent-activity:
+    get:
+      operationId: getRecentActivity
+      tags: [dashboard]
+      summary: Recent activity feed
+      responses:
+        "200":
+          description: Recent activity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityItem"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +287,167 @@ components:
       required:
         - status
 
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum: [draft, published, archived]
+        description:
+          type: ["string", "null"]
+        funnelCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - status
+        - funnelCount
+        - createdAt
+        - updatedAt
+
+    CreateProjectBody:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: ["string", "null"]
+      required:
+        - name
+
+    UpdateProjectBody:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum: [draft, published, archived]
+        description:
+          type: ["string", "null"]
+
+    Funnel:
+      type: object
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: ["integer", "null"]
+        targetAudience:
+          type: string
+        coreOffer:
+          type: string
+        conversionGoal:
+          type: string
+          enum: [automated_webinar, lead_magnet, direct_sales, free_consultation, high_ticket_application]
+        trafficSource:
+          type: string
+          enum: [meta_ads, organic_seo, youtube, linkedin]
+        buildProgress:
+          type: integer
+        aiEngineStatus:
+          type: string
+          enum: [ready, analyzing, complete]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - targetAudience
+        - coreOffer
+        - conversionGoal
+        - trafficSource
+        - buildProgress
+        - aiEngineStatus
+        - createdAt
+        - updatedAt
+
+    CreateFunnelBody:
+      type: object
+      properties:
+        projectId:
+          type: ["integer", "null"]
+        targetAudience:
+          type: string
+        coreOffer:
+          type: string
+        conversionGoal:
+          type: string
+          enum: [automated_webinar, lead_magnet, direct_sales, free_consultation, high_ticket_application]
+        trafficSource:
+          type: string
+          enum: [meta_ads, organic_seo, youtube, linkedin]
+      required:
+        - targetAudience
+        - coreOffer
+        - conversionGoal
+        - trafficSource
+
+    UpdateFunnelBody:
+      type: object
+      properties:
+        targetAudience:
+          type: string
+        coreOffer:
+          type: string
+        conversionGoal:
+          type: string
+          enum: [automated_webinar, lead_magnet, direct_sales, free_consultation, high_ticket_application]
+        trafficSource:
+          type: string
+          enum: [meta_ads, organic_seo, youtube, linkedin]
+
+    DashboardSummary:
+      type: object
+      properties:
+        totalProjects:
+          type: integer
+        draftProjects:
+          type: integer
+        publishedProjects:
+          type: integer
+        totalFunnels:
+          type: integer
+        averageBuildProgress:
+          type: number
+        aiEngineReady:
+          type: boolean
+      required:
+        - totalProjects
+        - draftProjects
+        - publishedProjects
+        - totalFunnels
+        - averageBuildProgress
+        - aiEngineReady
+
+    ActivityItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum: [project_created, funnel_created, funnel_initialized, project_published]
+        description:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+      required:
+        - id
+        - type
+        - description
+        - timestamp

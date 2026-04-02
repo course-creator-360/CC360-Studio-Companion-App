@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#8b90a1",
+                        "on-tertiary-container": "#4e1800",
+                        "on-primary": "#002d6c",
+                        "secondary": "#afc6ff",
+                        "on-secondary-fixed-variant": "#27457f",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-secondary": "#092e67",
+                        "on-surface": "#e3e1e9",
+                        "on-primary-fixed-variant": "#004398",
+                        "secondary-fixed": "#d9e2ff",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#98b4f6",
+                        "surface-container-highest": "#34343a",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#121318",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ffb598",
+                        "surface-variant": "#34343a",
+                        "on-secondary-fixed": "#001a43",
+                        "surface-tint": "#afc6ff",
+                        "tertiary-container": "#f1651e",
+                        "surface": "#121318",
+                        "primary-fixed-dim": "#afc6ff",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1a1b21",
+                        "on-primary-container": "#00275f",
+                        "surface-bright": "#38393f",
+                        "primary": "#afc6ff",
+                        "surface-container-high": "#292a2f",
+                        "tertiary": "#ffb598",
+                        "on-tertiary-fixed-variant": "#7e2c00",
+                        "inverse-primary": "#0059c6",
+                        "secondary-fixed-dim": "#afc6ff",
+                        "surface-container": "#1e1f25",
+                        "inverse-surface": "#e3e1e9",
+                        "secondary-container": "#27457f",
+                        "on-tertiary-fixed": "#360f00",
+                        "background": "#121318",
+                        "outline-variant": "#414755",
+                        "on-surface-variant": "#c1c6d7",
+                        "inverse-on-surface": "#2f3036",
+                        "primary-fixed": "#d9e2ff",
+                        "on-background": "#e3e1e9",
+                        "primary-container": "#518dff",
+                        "on-primary-fixed": "#001a43",
+                        "on-tertiary": "#591d00",
+                        "surface-container-lowest": "#0d0e13",
+                        "brand-blue": "#0475FF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #0A0B10; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .neon-haze { box-shadow: 0 0 20px rgba(4, 117, 255, 0.3); }
+        .neon-haze-hover:hover { box-shadow: 0 0 35px rgba(4, 117, 255, 0.5); }
+        .monolith-sidebar { box-shadow: 20px 0 40px rgba(0,0,0,0.4); }
+        .glass-surface { background: rgba(30, 31, 37, 0.4); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-brand-blue selection:text-white overflow-hidden">
+<!-- Sidebar: The White Monolith Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-white z-50 monolith-sidebar flex flex-col py-8">
+<div class="px-8 mb-12">
+<h1 class="text-xl font-black text-slate-900 tracking-tighter">Creator 360</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Command Center</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Items Mapping to JSON Logic -->
+<a class="flex items-center px-8 py-4 text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-semibold tracking-tight">Dashboard</span>
+</a>
+<!-- Active State Simulation for "Curriculum" context of Funnel Strategy -->
+<a class="flex items-center px-8 py-4 text-slate-900 border-l-4 border-brand-blue bg-slate-50 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4 text-brand-blue" data-icon="account_tree">account_tree</span>
+<span class="text-sm font-semibold tracking-tight">Curriculum</span>
+</a>
+<a class="flex items-center px-8 py-4 text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="monitoring">monitoring</span>
+<span class="text-sm font-semibold tracking-tight">Analytics</span>
+</a>
+<a class="flex items-center px-8 py-4 text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="groups">groups</span>
+<span class="text-sm font-semibold tracking-tight">Community</span>
+</a>
+<a class="flex items-center px-8 py-4 text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="settings">settings</span>
+<span class="text-sm font-semibold tracking-tight">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-slate-900 text-white py-3 rounded-lg text-sm font-bold active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Project
+            </button>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-[#0A0B10]/80 backdrop-blur-xl flex justify-between items-center px-12">
+<div class="flex items-center gap-8">
+<span class="text-lg font-bold text-[#E3E1E9]">Course Architect</span>
+<div class="flex items-center gap-6">
+<a class="text-[#0475FF] font-bold border-b-2 border-[#0475FF] py-5 text-sm tracking-tight" href="#">Drafts</a>
+<a class="text-[#E3E1E9] opacity-70 hover:text-[#0475FF] hover:opacity-100 transition-all text-sm tracking-tight" href="#">Published</a>
+<a class="text-[#E3E1E9] opacity-70 hover:text-[#0475FF] hover:opacity-100 transition-all text-sm tracking-tight" href="#">Archive</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface opacity-70 hover:opacity-100 cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface opacity-70 hover:opacity-100 cursor-pointer" data-icon="help_outline">help_outline</span>
+<button class="bg-brand-blue text-white px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase hover:scale-105 transition-transform active:scale-98">
+                Deploy
+            </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="portrait of a confident creative professional with soft studio lighting and a clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-0WmW0XYjL5gwL5iiu5XZR001b8FDpUWYJvGAs6W09aiTB4rWXrikNnXSJWKEM4kByDQoJZ8ZN4RJCFWDOkRkPXIHpDH1jkKCbPyMWK3UrpaRpSlT2_qAoKQ9Lq0h-rgXk_k8mLOJj098XckmP4JmJp8JED0gpTxxq0i7d0KkxWvGe_258O66Iz2xX3Fl18VmNrgpE3TY06lQiiM079iEDnTyOhNmZe4MTazULBZ-PnSIURxp_D_89FXgg5nvBzR4tUajq8SlrCM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-32 pb-24 px-12 min-h-screen relative overflow-y-auto">
+<!-- Background Haze Orbs -->
+<div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-blue/5 rounded-full blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
+<div class="max-w-4xl mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-8">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue">Phase 01</span>
+<span class="w-8 h-[1px] bg-outline-variant/30"></span>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface/40">Funnel Strategy</span>
+</div>
+<!-- Header Section -->
+<div class="mb-16">
+<h2 class="text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                    Define Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-on-surface-variant">Funnel Strategy</span>
+</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed max-w-2xl">
+                    Construct the foundational architecture of your conversion path. This data initializes our neural market research engine to pinpoint your ideal audience segment.
+                </p>
+</div>
+<!-- Strategy Engine Form -->
+<div class="space-y-12">
+<!-- Field Group 1: Audience -->
+<div class="group">
+<label class="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4 transition-colors group-focus-within:text-white">
+                        Target Audience
+                    </label>
+<div class="relative">
+<textarea class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-brand-blue/50 text-on-surface py-6 px-0 text-2xl font-light placeholder:text-on-surface/20 resize-none transition-all border-b border-outline-variant/20 focus:border-brand-blue" placeholder="Describe the specific profile, pain points, and desires of your ideal customer..." rows="3"></textarea>
+</div>
+</div>
+<!-- Field Group 2: Offer -->
+<div class="group">
+<label class="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4 transition-colors group-focus-within:text-white">
+                        Core Offer
+                    </label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-brand-blue/50 text-on-surface py-6 px-0 text-2xl font-light placeholder:text-on-surface/20 transition-all border-b border-outline-variant/20 focus:border-brand-blue" placeholder="e.g., The 12-Week Transformation Masterclass" type="text"/>
+</div>
+</div>
+<!-- Field Group 3: Conversion Logic -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="group">
+<label class="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4">
+                            Primary Conversion Goal
+                        </label>
+<select class="w-full bg-surface-container-lowest border-none border-b border-outline-variant/20 focus:ring-0 focus:border-brand-blue text-on-surface py-4 px-0 text-lg appearance-none cursor-pointer">
+<option>Automated Webinar</option>
+<option>Lead Magnet Ebook</option>
+<option>Direct Sales Page</option>
+<option>Free Consultation Call</option>
+<option>High-Ticket Application</option>
+</select>
+</div>
+<div class="group">
+<label class="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4">
+                            Estimated Traffic Source
+                        </label>
+<select class="w-full bg-surface-container-lowest border-none border-b border-outline-variant/20 focus:ring-0 focus:border-brand-blue text-on-surface py-4 px-0 text-lg appearance-none cursor-pointer">
+<option>Meta Paid Advertising</option>
+<option>Organic Search / SEO</option>
+<option>YouTube Content</option>
+<option>LinkedIn Outreach</option>
+</select>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="pt-12 flex flex-col items-start gap-8">
+<button class="group relative inline-flex items-center gap-4 bg-brand-blue text-white px-10 py-5 rounded-lg font-bold text-sm tracking-widest uppercase neon-haze neon-haze-hover transition-all active:scale-95">
+                        Initialize Market Research
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-2 transition-transform" data-icon="trending_flat">trending_flat</span>
+</button>
+<div class="flex items-center gap-4 text-on-surface/40">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+<p class="text-xs font-medium tracking-tight">System will analyze 4.2M data points based on your inputs.</p>
+</div>
+</div>
+</div>
+<!-- Contextual Stats / Insights (Asymmetric Layout) -->
+<div class="mt-32 grid grid-cols-3 gap-16 border-t border-outline-variant/10 pt-16">
+<div>
+<span class="text-3xl font-light text-white block mb-2">0%</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-brand-blue">Build Progress</span>
+<div class="w-full h-1 bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="w-0 h-full bg-brand-blue"></div>
+</div>
+</div>
+<div>
+<span class="text-3xl font-light text-white block mb-2">Ready</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-brand-blue">AI Engine Status</span>
+<p class="text-[11px] text-on-surface/40 mt-4 leading-relaxed italic">"Standing by for architecture parameters."</p>
+</div>
+<div class="flex items-center justify-center">
+<div class="w-24 h-24 rounded-full border border-brand-blue/20 flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full border-t-2 border-brand-blue animate-spin duration-[3000ms] opacity-50"></div>
+<span class="material-symbols-outlined text-brand-blue text-3xl" data-icon="memory">memory</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Watermark Logo -->
+<div class="fixed bottom-12 right-12 pointer-events-none opacity-[0.03] select-none">
+<h2 class="text-[120px] font-black tracking-tighter leading-none">C360</h2>
+</div>
+</body></html>
