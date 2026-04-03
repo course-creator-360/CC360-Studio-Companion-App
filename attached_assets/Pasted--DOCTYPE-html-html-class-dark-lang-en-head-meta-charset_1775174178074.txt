@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Creator 360 | Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0475FF",
+                        "background": "#0d0e13",
+                        "surface": "#121319",
+                        "surface-container": "#181920",
+                        "on-background": "#ffffff",
+                        "on-surface": "#ffffff",
+                        "on-surface-variant": "#e5e7eb",
+                        "outline-variant": "#47474e"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #0d0e13; color: #ffffff; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .neon-icon-glow { filter: drop-shadow(0 0 8px rgba(4, 117, 255, 0.6)); }
+        .card-glow:hover { box-shadow: 0 0 30px rgba(4, 117, 255, 0.1); border-color: rgba(4, 117, 255, 0.3); }
+    
+        .bg-haze {
+            background: radial-gradient(circle at 20% 30%, rgba(4, 117, 255, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(4, 117, 255, 0.1) 0%, transparent 40%),
+                        #0d0e13;
+            position: relative;
+        }
+        .bg-haze::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(13, 14, 19, 0) 0%, rgba(4, 117, 255, 0.05) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="text-on-background overflow-hidden bg-haze">
+<!-- Background Glow Blobs -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] pointer-events-none z-0 opacity-40"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[100px] pointer-events-none z-0 opacity-30"></div>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 border-r border-outline-variant/20 bg-[#0d0e13] flex flex-col z-50">
+<div class="p-8">
+<img alt="Course Creator 360" class="h-8 w-auto mb-2" src="https://lh3.googleusercontent.com/aida/ADBb0uh9pIlDUrftUSgcLQuIBZ5sWVbXXEAk6cOQUX0fkQcJMfBq_V5xxHDS5wvFHB-9AYoRxrNbu4wpm7c6v_7I9TujcRlyyK52sFIf0gLyiIuazoHH9g6OVGkfTfZ1cY6ysBmK-iCFpaO3dm9OfRRBZjSwOjw1savgzuCGN5tlx3BqTX2cVv3rqVTv523fms3ZVVK7ooEbzbJ7yJ7DY3cseUn2vGHRj75gs4Pl6C1r6IIgyLW-ZJTjjEYGiT6a6E335kLnoshA9T_GeVQ"/>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/60 font-medium">Workspace</p>
+</div>
+<nav class="flex-1 mt-4 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-white font-bold border-l-4 border-primary bg-primary/10" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-white group-hover:text-primary" data-icon="psychology">psychology</span>
+<span>AI Studio</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-white group-hover:text-primary" data-icon="hub">hub</span>
+<span>CC360</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-white group-hover:text-primary" data-icon="handshake">handshake</span>
+<span>Affiliate</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-white group-hover:text-primary" data-icon="auto_stories">auto_stories</span>
+<span>Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-white group-hover:text-primary" data-icon="dashboard_customize">dashboard_customize</span>
+<span>Templates</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/10">
+<p class="text-xs text-on-surface-variant/70 mb-2">Current Plan</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-white tracking-tight">Pro Creator</span>
+<span class="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded-full font-bold">ACTIVE</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 flex justify-between items-center px-8 z-40 bg-background/80 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface border-none w-full pl-10 pr-4 py-2 rounded-lg text-sm text-white focus:ring-2 focus:ring-primary/50 placeholder:text-on-surface-variant/50" placeholder="Search templates, projects, or assets..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full border-2 border-background"></span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-6 border-l border-outline-variant/20">
+<div class="text-right">
+<p class="text-sm font-semibold text-white leading-none">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant/70">Owner</p>
+</div>
+<img alt="Alex Rivera" class="w-8 h-8 rounded-full border border-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdJO7BZBMY64wsKAhY5wcIeOiJd37SvWgxUjzeC7MKs9E1nmydRAdS7gXl8i00wESJ8ZQ5DMyasdLnlc3YivHfUS27MRJuQUQmJwx5Oh1NlXqSWtEDCtnQeGFO_yYPmbCjIUA1VcSTXAsE2JrWxHZ6sm1KJyI6VmTCWu5ZR0oPZQ_LERn216OOqwulUxd0R7RoTV9yzoKNRv6XTlygeLU_wX179s2uVDtaMAH_sTkKEBQ5vlOvnpCPfpTIhrjDsDB3UAQ_fJxnnoBx"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-16 h-screen flex flex-col justify-center items-center relative overflow-y-auto">
+<div class="w-full max-w-6xl px-12 z-10 py-12">
+<!-- Hero Section -->
+<div class="mb-16 text-center lg:text-left">
+<h2 class="text-6xl font-extrabold text-white tracking-tighter mb-4 whitespace-nowrap">What do you want to do today?</h2>
+<div class="h-1 w-24 bg-primary rounded-full mb-6"></div>
+<p class="text-on-surface-variant text-lg max-w-xl font-medium leading-relaxed">
+                    Select an architected workflow to begin building your next high-converting asset. Every project is optimized for growth.
+                </p>
+</div>
+<!-- Action Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Action Card: Build a Funnel -->
+<div class="group relative bg-surface p-8 rounded-2xl border border-outline-variant/10 transition-all duration-300 hover:scale-[1.03] hover:bg-surface-container card-glow cursor-pointer">
+<div class="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined !text-3xl neon-icon-glow" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Build a Funnel</h3>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Design high-converting visitor journeys with our automated architectural frameworks.</p>
+<div class="flex items-center gap-2 text-primary font-bold text-sm tracking-wide group/btn">
+<span>LAUNCH ARCHITECT</span>
+<span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Action Card: Build a Lead Magnet -->
+<div class="group relative bg-surface p-8 rounded-2xl border border-outline-variant/10 transition-all duration-300 hover:scale-[1.03] hover:bg-surface-container card-glow cursor-pointer">
+<div class="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined !text-3xl neon-icon-glow" style="font-variation-settings: 'FILL' 1;">nest_cam_magnet_mount</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Build a Lead Magnet</h3>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Create irresistible value propositions that turn casual browsers into loyal subscribers.</p>
+<div class="flex items-center gap-2 text-primary font-bold text-sm tracking-wide group/btn">
+<span>START CREATING</span>
+<span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Action Card: Write an Email -->
+<div class="group relative bg-surface p-8 rounded-2xl border border-outline-variant/10 transition-all duration-300 hover:scale-[1.03] hover:bg-surface-container card-glow cursor-pointer">
+<div class="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined !text-3xl neon-icon-glow" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3 tracking-tight">Write an Email</h3>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Draft persuasive sequences or broadcast newsletters with precision-engineered AI tools.</p>
+<div class="flex items-center gap-2 text-primary font-bold text-sm tracking-wide group/btn">
+<span>OPEN EDITOR</span>
+<span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Floating Shortcuts -->
+<div class="absolute bottom-12 flex gap-4">
+<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container border border-outline-variant/20 text-xs font-semibold text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                System Operational
+            </div>
+<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container border border-outline-variant/20 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                Shortcut: ⌘ + K
+            </div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 h-16 w-16 bg-primary text-white rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(4,117,255,0.4)] hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

@@ -20,12 +20,9 @@ export default function Curriculum() {
   const [activeTab, setActiveTab] = useState<"draft" | "published" | "archived">("draft");
   const { data: projects = [] } = useListProjects({ status: activeTab });
   
-  // Create a default project if none exist just for the UI demo purposes
   const createProject = useCreateProject();
   useEffect(() => {
     if (projects.length === 0 && !createProject.isPending && activeTab === "draft") {
-      // In a real app we might not auto-create, but for the demo UI to be functional:
-      // createProject.mutate({ data: { name: "My First Project", description: "Default project" } });
     }
   }, [projects.length, activeTab, createProject]);
 
@@ -37,8 +34,6 @@ export default function Curriculum() {
 
   const createFunnel = useCreateFunnel();
   const updateFunnel = useUpdateFunnel();
-  // Using custom mutate for initialize since it returns a generic object that might need typings
-  // Assuming useInitializeFunnel is defined in the api-client
   const initializeFunnel = useInitializeFunnel ? useInitializeFunnel() : null;
 
   const [formData, setFormData] = useState({
@@ -48,7 +43,6 @@ export default function Curriculum() {
     trafficSource: "meta_ads" as any,
   });
 
-  // Sync form data with active funnel
   useEffect(() => {
     if (activeFunnel) {
       setFormData({
@@ -62,7 +56,6 @@ export default function Curriculum() {
 
   const handleInitialize = () => {
     if (!activeProject) {
-      // Create project then funnel
       createProject.mutate({ data: { name: "New Campaign" } }, {
         onSuccess: (project) => {
           createFunnel.mutate({
@@ -143,16 +136,14 @@ export default function Curriculum() {
   const status = activeFunnel?.aiEngineStatus || "ready";
 
   return (
-    <AppLayout title="Course Architect">
-      <div className="max-w-4xl mx-auto">
-        {/* Breadcrumbs */}
+    <AppLayout>
+      <div className="max-w-4xl mx-auto px-12 py-12">
         <div className="flex items-center gap-2 mb-8">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue">Phase 01</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cc-primary">Phase 01</span>
           <span className="w-8 h-[1px] bg-white/30"></span>
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Funnel Strategy</span>
         </div>
 
-        {/* Header Section */}
         <div className="mb-16">
           <h2 className="text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
             Define Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">Funnel Strategy</span>
@@ -162,16 +153,14 @@ export default function Curriculum() {
           </p>
         </div>
 
-        {/* Strategy Engine Form */}
         <div className="space-y-12">
-          {/* Field Group 1: Audience */}
           <div className="group">
-            <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4 transition-colors group-focus-within:text-white">
+            <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-cc-primary mb-4 transition-colors group-focus-within:text-white">
               Target Audience
             </label>
             <div className="relative">
               <textarea 
-                className="w-full bg-transparent border-none focus:ring-0 text-white py-6 px-0 text-2xl font-light placeholder:text-white/20 resize-none transition-all border-b border-white/20 focus:border-brand-blue outline-none" 
+                className="w-full bg-transparent border-none focus:ring-0 text-white py-6 px-0 text-2xl font-light placeholder:text-white/20 resize-none transition-all border-b border-white/20 focus:border-cc-primary outline-none" 
                 placeholder="Describe the specific profile, pain points, and desires of your ideal customer..." 
                 rows={3}
                 value={formData.targetAudience}
@@ -180,14 +169,13 @@ export default function Curriculum() {
             </div>
           </div>
 
-          {/* Field Group 2: Offer */}
           <div className="group">
-            <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4 transition-colors group-focus-within:text-white">
+            <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-cc-primary mb-4 transition-colors group-focus-within:text-white">
               Core Offer
             </label>
             <div className="relative">
               <input 
-                className="w-full bg-transparent border-none focus:ring-0 text-white py-6 px-0 text-2xl font-light placeholder:text-white/20 transition-all border-b border-white/20 focus:border-brand-blue outline-none" 
+                className="w-full bg-transparent border-none focus:ring-0 text-white py-6 px-0 text-2xl font-light placeholder:text-white/20 transition-all border-b border-white/20 focus:border-cc-primary outline-none" 
                 placeholder="e.g., The 12-Week Transformation Masterclass" 
                 type="text"
                 value={formData.coreOffer}
@@ -196,14 +184,13 @@ export default function Curriculum() {
             </div>
           </div>
 
-          {/* Field Group 3: Conversion Logic */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="group">
-              <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4">
+              <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-cc-primary mb-4">
                 Primary Conversion Goal
               </label>
               <select 
-                className="w-full bg-transparent border-none border-b border-white/20 focus:ring-0 focus:border-brand-blue text-white py-4 px-0 text-lg appearance-none cursor-pointer outline-none [&>option]:bg-[#0A0B10]"
+                className="w-full bg-transparent border-none border-b border-white/20 focus:ring-0 focus:border-cc-primary text-white py-4 px-0 text-lg appearance-none cursor-pointer outline-none [&>option]:bg-cc-background"
                 value={formData.conversionGoal}
                 onChange={(e) => setFormData({...formData, conversionGoal: e.target.value as any})}
               >
@@ -216,11 +203,11 @@ export default function Curriculum() {
             </div>
 
             <div className="group">
-              <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-brand-blue mb-4">
+              <label className="block text-[11px] font-bold uppercase tracking-[0.3em] text-cc-primary mb-4">
                 Estimated Traffic Source
               </label>
               <select 
-                className="w-full bg-transparent border-none border-b border-white/20 focus:ring-0 focus:border-brand-blue text-white py-4 px-0 text-lg appearance-none cursor-pointer outline-none [&>option]:bg-[#0A0B10]"
+                className="w-full bg-transparent border-none border-b border-white/20 focus:ring-0 focus:border-cc-primary text-white py-4 px-0 text-lg appearance-none cursor-pointer outline-none [&>option]:bg-cc-background"
                 value={formData.trafficSource}
                 onChange={(e) => setFormData({...formData, trafficSource: e.target.value as any})}
               >
@@ -232,12 +219,11 @@ export default function Curriculum() {
             </div>
           </div>
 
-          {/* CTA Section */}
           <div className="pt-12 flex flex-col items-start gap-8">
             <button 
               onClick={handleInitialize}
               disabled={isAnalyzing}
-              className={`group relative inline-flex items-center gap-4 bg-brand-blue text-white px-10 py-5 rounded-lg font-bold text-sm tracking-widest uppercase neon-haze neon-haze-hover transition-all ${isAnalyzing ? 'opacity-50 cursor-not-allowed' : 'active:scale-95'}`}
+              className={`group relative inline-flex items-center gap-4 bg-cc-primary text-white px-10 py-5 rounded-lg font-bold text-sm tracking-widest uppercase neon-haze neon-haze-hover transition-all ${isAnalyzing ? 'opacity-50 cursor-not-allowed' : 'active:scale-95'}`}
             >
               {isAnalyzing ? 'Initializing...' : 'Initialize Market Research'}
               {!isAnalyzing && <span className="material-symbols-outlined text-xl group-hover:translate-x-2 transition-transform">trending_flat</span>}
@@ -249,14 +235,13 @@ export default function Curriculum() {
           </div>
         </div>
 
-        {/* Contextual Stats / Insights */}
         <div className="mt-32 grid grid-cols-3 gap-16 border-t border-white/10 pt-16">
           <div>
             <span className="text-3xl font-light text-white block mb-2">{progress}%</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-blue">Build Progress</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-cc-primary">Build Progress</span>
             <div className="w-full h-1 bg-white/10 mt-4 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-brand-blue transition-all duration-500" 
+                className="h-full bg-cc-primary transition-all duration-500" 
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
@@ -265,15 +250,15 @@ export default function Curriculum() {
             <span className="text-3xl font-light text-white block mb-2 capitalize">
               {isAnalyzing ? 'Analyzing' : status}
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-blue">AI Engine Status</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-cc-primary">AI Engine Status</span>
             <p className="text-[11px] text-white/40 mt-4 leading-relaxed italic">
               "{isAnalyzing ? 'Processing architecture parameters...' : status === 'complete' ? 'Analysis complete.' : 'Standing by for architecture parameters.'}"
             </p>
           </div>
           <div className="flex items-center justify-center">
-            <div className="w-24 h-24 rounded-full border border-brand-blue/20 flex items-center justify-center relative">
-              <div className={`absolute inset-0 rounded-full border-t-2 border-brand-blue duration-[3000ms] opacity-50 ${isAnalyzing || status === 'analyzing' ? 'animate-spin' : ''}`}></div>
-              <span className="material-symbols-outlined text-brand-blue text-3xl">memory</span>
+            <div className="w-24 h-24 rounded-full border border-cc-primary/20 flex items-center justify-center relative">
+              <div className={`absolute inset-0 rounded-full border-t-2 border-cc-primary duration-[3000ms] opacity-50 ${isAnalyzing || status === 'analyzing' ? 'animate-spin' : ''}`}></div>
+              <span className="material-symbols-outlined text-cc-primary text-3xl">memory</span>
             </div>
           </div>
         </div>

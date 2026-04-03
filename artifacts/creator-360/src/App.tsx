@@ -8,6 +8,7 @@ import Curriculum from "@/pages/curriculum";
 import Analytics from "@/pages/analytics";
 import Community from "@/pages/community";
 import Settings from "@/pages/settings";
+import Templates from "@/pages/templates";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +23,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Dashboard} />
+      <Route path="/ai-studio" component={Curriculum} />
+      <Route path="/cc360" component={Analytics} />
+      <Route path="/affiliate" component={Community} />
+      <Route path="/courses" component={Settings} />
+      <Route path="/templates" component={Templates} />
       <Route path="/curriculum" component={Curriculum} />
       <Route path="/analytics" component={Analytics} />
       <Route path="/community" component={Community} />
