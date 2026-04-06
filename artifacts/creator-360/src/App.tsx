@@ -4,11 +4,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
-import Curriculum from "@/pages/curriculum";
-import Analytics from "@/pages/analytics";
-import Community from "@/pages/community";
-import Settings from "@/pages/settings";
-import Templates from "@/pages/templates";
+import Login from "@/pages/login";
+import CreateAsset from "@/pages/create-asset";
+import EditImport from "@/pages/edit-import";
+import AuthSync from "@/pages/auth-sync";
+import Billing from "@/pages/billing";
+import TuesdayDemo from "@/pages/tuesday-demo";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,16 +23,18 @@ const queryClient = new QueryClient({
 function Router() {
   return (
     <Switch>
+      <Route path="/login" component={Login} />
       <Route path="/" component={Dashboard} />
-      <Route path="/ai-studio" component={Curriculum} />
-      <Route path="/cc360" component={Analytics} />
-      <Route path="/affiliate" component={Community} />
-      <Route path="/courses" component={Settings} />
-      <Route path="/templates" component={Templates} />
-      <Route path="/curriculum" component={Curriculum} />
-      <Route path="/analytics" component={Analytics} />
-      <Route path="/community" component={Community} />
-      <Route path="/settings" component={Settings} />
+      <Route path="/ai-studio" component={CreateAsset} />
+      <Route path="/create" component={CreateAsset} />
+      <Route path="/cc360" component={EditImport} />
+      <Route path="/edit-import" component={EditImport} />
+      <Route path="/affiliate" component={AuthSync} />
+      <Route path="/auth" component={AuthSync} />
+      <Route path="/courses" component={Billing} />
+      <Route path="/billing" component={Billing} />
+      <Route path="/templates" component={TuesdayDemo} />
+      <Route path="/demo" component={TuesdayDemo} />
       <Route component={NotFound} />
     </Switch>
   );
