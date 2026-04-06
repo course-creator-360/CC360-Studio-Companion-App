@@ -25,10 +25,10 @@ const connections = [
 ];
 
 const syncLog = [
-  { event: "OAuth token refreshed", time: "2 hours ago", status: "success" },
-  { event: "Contact sync completed", time: "6 hours ago", status: "success" },
-  { event: "Template push to GHL", time: "Yesterday", status: "success" },
-  { event: "SSO config check", time: "2 days ago", status: "warning" },
+  { id: "oauth-refresh", event: "OAuth token refreshed", time: "2 hours ago", status: "success" },
+  { id: "contact-sync", event: "Contact sync completed", time: "6 hours ago", status: "success" },
+  { id: "template-push", event: "Template push to GHL", time: "Yesterday", status: "success" },
+  { id: "sso-check", event: "SSO config check", time: "2 days ago", status: "warning" },
 ];
 
 export default function AuthSync() {
@@ -79,8 +79,8 @@ export default function AuthSync() {
               <h2 className="text-sm font-bold text-white">Sync Log</h2>
             </div>
             <div className="divide-y divide-white/5">
-              {syncLog.map((entry, i) => (
-                <div key={i} className="flex items-center gap-3 px-6 py-3.5">
+              {syncLog.map((entry) => (
+                <div key={entry.id} className="flex items-center gap-3 px-6 py-3.5">
                   <div className={`h-1.5 w-1.5 rounded-full ${entry.status === "success" ? "bg-emerald-400" : "bg-amber-400"}`} />
                   <span className="flex-1 text-sm text-white/60">{entry.event}</span>
                   <span className="text-xs text-white/20">{entry.time}</span>

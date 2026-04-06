@@ -2,11 +2,11 @@ import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 
 const usageHistory = [
-  { action: "Email sequence generated", asset: "Spring Enrollment Nurture", credits: 18, date: "Today" },
-  { action: "Rewrite pass", asset: "Webinar Follow-Up", credits: 6, date: "Yesterday" },
-  { action: "Landing page generated", asset: "Course Launch Teaser", credits: 24, date: "Apr 3" },
-  { action: "Email generated", asset: "Welcome Sequence #4", credits: 4, date: "Apr 2" },
-  { action: "Rewrite pass", asset: "Onboarding Email", credits: 6, date: "Apr 1" },
+  { id: "gen-spring-enroll", action: "Email sequence generated", asset: "Spring Enrollment Nurture", credits: 18, date: "Today" },
+  { id: "rewrite-webinar", action: "Rewrite pass", asset: "Webinar Follow-Up", credits: 6, date: "Yesterday" },
+  { id: "gen-launch-teaser", action: "Landing page generated", asset: "Course Launch Teaser", credits: 24, date: "Apr 3" },
+  { id: "gen-welcome-4", action: "Email generated", asset: "Welcome Sequence #4", credits: 4, date: "Apr 2" },
+  { id: "rewrite-onboard", action: "Rewrite pass", asset: "Onboarding Email", credits: 6, date: "Apr 1" },
 ];
 
 const plans = [
@@ -88,8 +88,8 @@ export default function Billing() {
               <span className="text-xs text-white/30">This billing cycle</span>
             </div>
             <div className="divide-y divide-white/5">
-              {usageHistory.map((item, i) => (
-                <div key={i} className="flex items-center gap-4 px-6 py-3.5">
+              {usageHistory.map((item) => (
+                <div key={item.id} className="flex items-center gap-4 px-6 py-3.5">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cc-primary/10">
                     <span className="material-symbols-outlined text-sm text-cc-primary">auto_awesome</span>
                   </div>

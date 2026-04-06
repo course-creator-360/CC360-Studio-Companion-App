@@ -12,11 +12,11 @@ const assetTypes = [
 ];
 
 const generatedEmails = [
-  { subject: "You already took the first step", preview: "Reset the promise and make the next step obvious. Remind them why they downloaded the checklist and bridge to the application call." },
-  { subject: "The #1 thing holding your launch back", preview: "Handle the biggest buying objection early. Address the fear that they're not ready, and reframe the call as a clarity session." },
-  { subject: "How Sarah filled 47 seats in 11 days", preview: "Add proof and a concrete client outcome. Short case study that mirrors the subscriber's situation." },
-  { subject: "Spots are filling — here's what happens next", preview: "Create deadline pressure without sounding desperate. Show remaining availability and what happens after the window closes." },
-  { subject: "Last chance: your enrollment plan call", preview: "Final CTA with a short application link. Direct, warm, and action-focused. One button, one outcome." },
+  { id: "email-first-step", subject: "You already took the first step", preview: "Reset the promise and make the next step obvious. Remind them why they downloaded the checklist and bridge to the application call." },
+  { id: "email-holding-back", subject: "The #1 thing holding your launch back", preview: "Handle the biggest buying objection early. Address the fear that they're not ready, and reframe the call as a clarity session." },
+  { id: "email-case-study", subject: "How Sarah filled 47 seats in 11 days", preview: "Add proof and a concrete client outcome. Short case study that mirrors the subscriber's situation." },
+  { id: "email-deadline", subject: "Spots are filling — here's what happens next", preview: "Create deadline pressure without sounding desperate. Show remaining availability and what happens after the window closes." },
+  { id: "email-last-chance", subject: "Last chance: your enrollment plan call", preview: "Final CTA with a short application link. Direct, warm, and action-focused. One button, one outcome." },
 ];
 
 export default function CreateAsset() {
@@ -205,7 +205,7 @@ export default function CreateAsset() {
             </div>
             <div className="space-y-3">
               {generatedEmails.map((email, i) => (
-                <div key={i} className="rounded-2xl border border-white/8 bg-cc-surface p-5 transition hover:border-white/15">
+                <div key={email.id} className="rounded-2xl border border-white/8 bg-cc-surface p-5 transition hover:border-white/15">
                   <div className="flex items-start gap-4">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cc-primary/10 text-xs font-bold text-cc-primary">
                       {i + 1}
