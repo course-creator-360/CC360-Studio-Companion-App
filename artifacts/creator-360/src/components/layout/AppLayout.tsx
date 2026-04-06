@@ -12,6 +12,8 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   const navItems = [
     { name: "Dashboard", href: "/", icon: "dashboard" },
+    { name: "Courses", href: "/course-outlines", icon: "school" },
+    { name: "Research", href: "/market-research", icon: "query_stats" },
     { name: "Create", href: "/ai-studio", icon: "auto_awesome" },
     { name: "Edit & Import", href: "/cc360", icon: "edit_note" },
     { name: "Billing", href: "/courses", icon: "account_balance_wallet" },

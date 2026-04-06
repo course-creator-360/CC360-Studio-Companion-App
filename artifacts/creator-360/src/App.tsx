@@ -10,6 +10,8 @@ import EditImport from "@/pages/edit-import";
 import AuthSync from "@/pages/auth-sync";
 import Billing from "@/pages/billing";
 import TuesdayDemo from "@/pages/tuesday-demo";
+import MarketResearch from "@/pages/market-research";
+import CourseOutlines from "@/pages/course-outlines";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +33,8 @@ function Router() {
       <Route path="/edit-import" component={EditImport} />
       <Route path="/affiliate" component={AuthSync} />
       <Route path="/auth" component={AuthSync} />
+      <Route path="/market-research" component={MarketResearch} />
+      <Route path="/course-outlines" component={CourseOutlines} />
       <Route path="/courses" component={Billing} />
       <Route path="/billing" component={Billing} />
       <Route path="/templates" component={TuesdayDemo} />
