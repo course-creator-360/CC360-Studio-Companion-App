@@ -30,7 +30,7 @@ const tools = [
     label: "Landing Pages",
     desc: "Opt-in and sales page copy",
     icon: "web",
-    href: "/studio/create",
+    href: "/studio/landing-pages",
     color: "bg-amber-500/10 text-amber-400",
     borderColor: "border-amber-500/20",
   },
@@ -38,19 +38,17 @@ const tools = [
     label: "Lead Magnets",
     desc: "Downloadable guides, checklists, and PDFs",
     icon: "download",
-    href: "",
+    href: "/studio/lead-magnets",
     color: "bg-rose-500/10 text-rose-400",
-    borderColor: "border-white/8",
-    comingSoon: true,
+    borderColor: "border-rose-500/20",
   },
   {
     label: "AI Websites",
     desc: "Full website copy and structure",
     icon: "language",
-    href: "",
+    href: "/studio/websites",
     color: "bg-cyan-500/10 text-cyan-400",
-    borderColor: "border-white/8",
-    comingSoon: true,
+    borderColor: "border-cyan-500/20",
   },
 ];
 
@@ -66,45 +64,24 @@ export default function Studio() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {tools.map((tool) => {
-            const inner = (
+          {tools.map((tool) => (
+            <Link key={tool.label} href={tool.href}>
               <div
-                className={`group relative flex flex-col gap-4 rounded-2xl border p-6 transition ${
-                  tool.comingSoon
-                    ? "border-white/8 bg-cc-surface opacity-50 cursor-default"
-                    : `${tool.borderColor} bg-cc-surface hover:border-white/20 cursor-pointer`
-                }`}
+                className={`group relative flex flex-col gap-4 rounded-2xl border p-6 transition ${tool.borderColor} bg-cc-surface hover:border-white/20 cursor-pointer`}
               >
                 <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${tool.color}`}>
                   <span className="material-symbols-outlined text-2xl">{tool.icon}</span>
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-bold text-white">{tool.label}</p>
-                    {tool.comingSoon && (
-                      <span className="rounded-full bg-white/5 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white/30">
-                        Soon
-                      </span>
-                    )}
-                  </div>
+                  <p className="text-sm font-bold text-white">{tool.label}</p>
                   <p className="mt-1 text-xs text-white/40">{tool.desc}</p>
                 </div>
-                {!tool.comingSoon && (
-                  <span className="material-symbols-outlined absolute right-5 top-5 text-lg text-white/10 transition group-hover:text-white/30">
-                    arrow_forward
-                  </span>
-                )}
+                <span className="material-symbols-outlined absolute right-5 top-5 text-lg text-white/10 transition group-hover:text-white/30">
+                  arrow_forward
+                </span>
               </div>
-            );
-
-            if (tool.comingSoon) return <div key={tool.label}>{inner}</div>;
-
-            return (
-              <Link key={tool.label} href={tool.href}>
-                {inner}
-              </Link>
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </div>
     </AppLayout>

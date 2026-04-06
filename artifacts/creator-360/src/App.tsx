@@ -7,6 +7,9 @@ import Dashboard from "@/pages/dashboard";
 import Login from "@/pages/login";
 import Studio from "@/pages/studio";
 import CreateAsset from "@/pages/create-asset";
+import LandingPages from "@/pages/landing-pages";
+import LeadMagnets from "@/pages/lead-magnets";
+import Websites from "@/pages/websites";
 import EditImport from "@/pages/edit-import";
 import AuthSync from "@/pages/auth-sync";
 import Billing from "@/pages/billing";
@@ -34,6 +37,9 @@ function Router() {
       <Route path="/studio/create" component={CreateAsset} />
       <Route path="/studio/research" component={MarketResearch} />
       <Route path="/studio/courses" component={CourseOutlines} />
+      <Route path="/studio/landing-pages" component={LandingPages} />
+      <Route path="/studio/lead-magnets" component={LeadMagnets} />
+      <Route path="/studio/websites" component={Websites} />
 
       {/* Billing */}
       <Route path="/billing" component={Billing} />

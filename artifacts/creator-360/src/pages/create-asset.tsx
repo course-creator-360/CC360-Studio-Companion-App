@@ -53,6 +53,14 @@ export default function CreateAsset() {
   return (
     <AppLayout>
       <div className="mx-auto w-full max-w-5xl px-8 py-8">
+        <div className="mb-3">
+          <Link href="/studio">
+            <span className="inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-white/30 transition hover:text-white/60">
+              <span className="material-symbols-outlined text-sm">arrow_back</span>
+              AI Studio
+            </span>
+          </Link>
+        </div>
         <div className="mb-8 flex items-center gap-2">
           {steps.map((s, i) => (
             <div key={s.key} className="flex items-center gap-2">

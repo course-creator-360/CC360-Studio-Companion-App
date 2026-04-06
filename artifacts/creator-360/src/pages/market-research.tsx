@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { useToast } from "@/hooks/use-toast";
 
@@ -115,6 +116,14 @@ export default function MarketResearch() {
       <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-8 sm:py-8">
         {view === "list" && (
           <>
+            <div className="mb-1">
+              <Link href="/studio">
+                <span className="inline-flex cursor-pointer items-center gap-1 text-xs font-medium text-white/30 transition hover:text-white/60">
+                  <span className="material-symbols-outlined text-sm">arrow_back</span>
+                  AI Studio
+                </span>
+              </Link>
+            </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h1 className="text-xl font-extrabold text-white sm:text-2xl">Market Research</h1>
