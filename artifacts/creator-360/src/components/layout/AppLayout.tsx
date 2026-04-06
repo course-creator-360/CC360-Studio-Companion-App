@@ -12,16 +12,8 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   const navItems = [
     { name: "Dashboard", href: "/", icon: "dashboard" },
-    { name: "Courses", href: "/course-outlines", icon: "school" },
-    { name: "Research", href: "/market-research", icon: "query_stats" },
-    { name: "Create", href: "/ai-studio", icon: "auto_awesome" },
-    { name: "Edit & Import", href: "/cc360", icon: "edit_note" },
-    { name: "Billing", href: "/courses", icon: "account_balance_wallet" },
-    { name: "Connections", href: "/affiliate", icon: "link" },
-  ];
-
-  const bottomItems = [
-    { name: "Walkthrough", href: "/templates", icon: "slideshow" },
+    { name: "AI Studio", href: "/studio", icon: "auto_awesome" },
+    { name: "Billing", href: "/billing", icon: "account_balance_wallet" },
   ];
 
   return (
@@ -59,24 +51,6 @@ export function AppLayout({ children }: AppLayoutProps) {
             );
           })}
         </nav>
-
-        <div className="px-3 pb-2">
-          {bottomItems.map((item) => {
-            const isActive = location === item.href;
-            return (
-              <Link key={item.name} href={item.href}>
-                <span className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] font-medium transition cursor-pointer ${
-                  isActive
-                    ? "bg-white/[0.06] text-white"
-                    : "text-white/40 hover:bg-white/[0.03] hover:text-white/60"
-                }`}>
-                  <span className={`material-symbols-outlined text-lg ${isActive ? "text-cc-primary" : ""}`}>{item.icon}</span>
-                  {item.name}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
 
         <div className="border-t border-white/5 px-3 py-3">
           <div className="flex items-center gap-2.5 rounded-lg px-3 py-2">

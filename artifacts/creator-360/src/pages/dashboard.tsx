@@ -9,10 +9,10 @@ const recentAssets = [
 ];
 
 const quickActions = [
-  { label: "New Email Sequence", icon: "mail", href: "/ai-studio", color: "bg-blue-500/10 text-blue-400" },
-  { label: "New Landing Page", icon: "web", href: "/ai-studio", color: "bg-purple-500/10 text-purple-400" },
+  { label: "New Email Sequence", icon: "mail", href: "/studio/create", color: "bg-blue-500/10 text-blue-400" },
+  { label: "New Landing Page", icon: "web", href: "/studio/create", color: "bg-purple-500/10 text-purple-400" },
   { label: "Import to GHL", icon: "publish", href: "/cc360", color: "bg-emerald-500/10 text-emerald-400" },
-  { label: "Buy Credits", icon: "add_circle", href: "/courses", color: "bg-amber-500/10 text-amber-400" },
+  { label: "Buy Credits", icon: "add_circle", href: "/billing", color: "bg-amber-500/10 text-amber-400" },
 ];
 
 export default function Dashboard() {
@@ -24,7 +24,7 @@ export default function Dashboard() {
             <h1 className="text-3xl font-extrabold tracking-tight text-white">Good morning, Canyon</h1>
             <p className="mt-1 text-sm text-white/50">Here's what's happening with your content today.</p>
           </div>
-          <Link href="/ai-studio">
+          <Link href="/studio">
             <span className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110">
               <span className="material-symbols-outlined text-lg">add</span>
               Create Asset
@@ -130,7 +130,7 @@ export default function Dashboard() {
                   <h3 className="text-sm font-bold text-white">Current Flow</h3>
                   <p className="mt-1 text-xs text-white/50">{featuredAsset.name}</p>
                   <p className="mt-0.5 text-[10px] text-white/30">{featuredAsset.type}</p>
-                  <Link href="/ai-studio">
+                  <Link href="/studio/create">
                     <span className="mt-3 inline-block cursor-pointer text-xs font-semibold text-cc-primary hover:underline">
                       Continue editing &rarr;
                     </span>
