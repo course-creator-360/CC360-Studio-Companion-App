@@ -1,14 +1,39 @@
 import { Link } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { PAGE_SHELL } from "@/lib/page-layout";
 
 const tools = [
   {
-    label: "Course Outlines",
-    desc: "Structure courses with modules and lessons",
-    icon: "school",
-    href: "/studio/courses",
-    color: "bg-blue-500/10 text-blue-400",
-    borderColor: "border-blue-500/20",
+    label: "Funnel Builder",
+    desc: "Build complete opt-in, sales, and upsell funnels",
+    icon: "filter_alt",
+    href: "/studio/funnels",
+    color: "bg-indigo-500/10 text-indigo-400",
+    borderColor: "border-indigo-500/20",
+  },
+  {
+    label: "Email Copywriter",
+    desc: "Nurture sequences, broadcasts, and SMS campaigns",
+    icon: "mail",
+    href: "/studio/create",
+    color: "bg-emerald-500/10 text-emerald-400",
+    borderColor: "border-emerald-500/20",
+  },
+  {
+    label: "Short Form Copywriter",
+    desc: "Scripts for Reels, Shorts, and TikToks",
+    icon: "movie",
+    href: "/studio/short-form",
+    color: "bg-pink-500/10 text-pink-400",
+    borderColor: "border-pink-500/20",
+  },
+  {
+    label: "Long Form Copywriter",
+    desc: "YouTube scripts, webinar decks, and podcast outlines",
+    icon: "description",
+    href: "/studio/long-form",
+    color: "bg-orange-500/10 text-orange-400",
+    borderColor: "border-orange-500/20",
   },
   {
     label: "Market Research",
@@ -19,20 +44,12 @@ const tools = [
     borderColor: "border-purple-500/20",
   },
   {
-    label: "Email & SMS",
-    desc: "Nurture sequences, broadcasts, and SMS campaigns",
-    icon: "mail",
-    href: "/studio/create",
-    color: "bg-emerald-500/10 text-emerald-400",
-    borderColor: "border-emerald-500/20",
-  },
-  {
-    label: "Landing Pages",
-    desc: "Opt-in and sales page copy",
-    icon: "web",
-    href: "/studio/landing-pages",
-    color: "bg-amber-500/10 text-amber-400",
-    borderColor: "border-amber-500/20",
+    label: "360 ICP Creator",
+    desc: "Build detailed ideal customer profiles",
+    icon: "person_search",
+    href: "/studio/icp",
+    color: "bg-teal-500/10 text-teal-400",
+    borderColor: "border-teal-500/20",
   },
   {
     label: "Lead Magnets",
@@ -41,6 +58,22 @@ const tools = [
     href: "/studio/lead-magnets",
     color: "bg-rose-500/10 text-rose-400",
     borderColor: "border-rose-500/20",
+  },
+  {
+    label: "Course Outlines",
+    desc: "Structure courses with modules and lessons",
+    icon: "school",
+    href: "/studio/courses",
+    color: "bg-blue-500/10 text-blue-400",
+    borderColor: "border-blue-500/20",
+  },
+  {
+    label: "Landing Pages",
+    desc: "Opt-in and sales page copy",
+    icon: "web",
+    href: "/studio/landing-pages",
+    color: "bg-amber-500/10 text-amber-400",
+    borderColor: "border-amber-500/20",
   },
   {
     label: "AI Websites",
@@ -55,9 +88,9 @@ const tools = [
 export default function Studio() {
   return (
     <AppLayout>
-      <div className="mx-auto w-full max-w-5xl px-8 py-8">
+      <div className={PAGE_SHELL}>
         <div className="mb-8">
-          <h1 className="text-2xl font-extrabold text-white">AI Studio</h1>
+          <h1 className="text-xl font-extrabold text-white sm:text-2xl">AI Studio</h1>
           <p className="mt-1 text-sm text-white/40">
             Choose a tool to get started. Every asset you create can be edited and imported to GHL.
           </p>

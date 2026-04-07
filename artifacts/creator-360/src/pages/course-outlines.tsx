@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { PAGE_SHELL } from "@/lib/page-layout";
 import { useToast } from "@/hooks/use-toast";
+import { creditCosts } from "@/lib/companion-demo-data";
 
 interface Lesson {
   id: string;
@@ -71,7 +73,26 @@ export default function CourseOutlines() {
   const [addingLessonIdx, setAddingLessonIdx] = useState<string | null>(null);
   const [newLessonTitle, setNewLessonTitle] = useState("");
 
+  const [generating, setGenerating] = useState(false);
   const activeOutline = outlines.find((o) => o.id === activeId) ?? null;
+
+  const handleGenerate = () => {
+    if (!activeOutline || activeOutline.modules.length > 0) return;
+    setGenerating(true);
+    setTimeout(() => {
+      const generated = [
+        { id: uid(), title: "Module 1: Foundation & Validation", lessons: [lesson("Identifying your profitable niche"), lesson("Audience interview framework"), lesson("Competitor gap analysis"), lesson("Validating demand before you build")] },
+        { id: uid(), title: "Module 2: Curriculum Architecture", lessons: [lesson("Mapping the transformation arc"), lesson("Chunking content into modules"), lesson("Choosing delivery formats"), lesson("Building lesson templates")] },
+        { id: uid(), title: "Module 3: Content Production", lessons: [lesson("Recording setup on any budget"), lesson("Batch production workflow"), lesson("Editing essentials"), lesson("Supplemental materials")] },
+        { id: uid(), title: "Module 4: Launch & Enrollment", lessons: [lesson("Pre-launch audience building"), lesson("Launch email sequence"), lesson("Webinar funnel setup"), lesson("Launch week execution")] },
+      ];
+      setOutlines((prev) =>
+        prev.map((o) => (o.id === activeId ? { ...o, modules: generated, updatedAt: "Just now" } : o)),
+      );
+      setGenerating(false);
+      toast({ title: "Course outline generated", description: `Used ${creditCosts.courseOutline} credits` });
+    }, 2000);
+  };
 
   const createOutline = () => {
     const id = `c${Date.now()}`;
@@ -161,7 +182,7 @@ export default function CourseOutlines() {
 
   return (
     <AppLayout>
-      <div className="mx-auto w-full max-w-5xl px-8 py-8">
+      <div className={PAGE_SHELL}>
         {view === "list" && (
           <>
             <div className="mb-1">
@@ -172,14 +193,15 @@ export default function CourseOutlines() {
                 </span>
               </Link>
             </div>
-            <div className="flex items-end justify-between">
-              <div>
-                <h1 className="text-2xl font-extrabold text-white">Course Outlines</h1>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div className="min-w-0">
+                <h1 className="text-xl font-extrabold text-white sm:text-2xl">Course Outlines</h1>
                 <p className="mt-1 text-sm text-white/40">Structure your courses with modules and lessons.</p>
               </div>
               <button
+                type="button"
                 onClick={createOutline}
-                className="inline-flex items-center gap-2 rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110 sm:w-auto"
               >
                 <span className="material-symbols-outlined text-lg">add</span>
                 New Course
@@ -201,19 +223,23 @@ export default function CourseOutlines() {
                   return (
                     <button
                       key={o.id}
+                      type="button"
                       onClick={() => openOutline(o.id)}
-                      className="flex w-full items-center gap-4 rounded-2xl border border-white/8 bg-cc-surface p-5 text-left transition hover:border-white/15"
+                      className="flex w-full flex-col gap-3 rounded-2xl border border-white/8 bg-cc-surface p-4 text-left transition hover:border-white/15 sm:flex-row sm:items-center sm:gap-4 sm:p-5"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cc-primary/10">
-                        <span className="material-symbols-outlined text-lg text-cc-primary">school</span>
+                      <div className="flex items-center gap-3 sm:contents">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cc-primary/10">
+                          <span className="material-symbols-outlined text-lg text-cc-primary">school</span>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-semibold text-white">{o.title}</p>
+                          <p className="mt-0.5 text-xs text-white/40">
+                            {o.modules.length} module{o.modules.length !== 1 ? "s" : ""} &middot; {lessons} lesson{lessons !== 1 ? "s" : ""}
+                          </p>
+                        </div>
+                        <span className="material-symbols-outlined text-lg text-white/20 sm:hidden">chevron_right</span>
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-semibold text-white">{o.title}</p>
-                        <p className="mt-0.5 text-xs text-white/40">
-                          {o.modules.length} module{o.modules.length !== 1 ? "s" : ""} &middot; {lessons} lesson{lessons !== 1 ? "s" : ""}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 pl-[52px] sm:pl-0">
                         <span
                           className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
                             o.status === "published"
@@ -223,8 +249,8 @@ export default function CourseOutlines() {
                         >
                           {o.status}
                         </span>
-                        <span className="text-[10px] text-white/30 whitespace-nowrap">{o.updatedAt}</span>
-                        <span className="material-symbols-outlined text-lg text-white/20">chevron_right</span>
+                        <span className="whitespace-nowrap text-[10px] text-white/30">{o.updatedAt}</span>
+                        <span className="material-symbols-outlined hidden text-lg text-white/20 sm:block">chevron_right</span>
                       </div>
                     </button>
                   );
@@ -236,24 +262,50 @@ export default function CourseOutlines() {
 
         {view === "edit" && activeOutline && (
           <>
-            <div className="mb-6 flex items-center gap-3">
-              <button
-                onClick={() => { setView("list"); setAddingModule(false); setAddingLessonIdx(null); }}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white/40 transition hover:text-white"
-              >
-                <span className="material-symbols-outlined text-lg">arrow_back</span>
-              </button>
-              <div className="min-w-0 flex-1">
-                <input
-                  value={activeOutline.title}
-                  onChange={(e) => updateField("title", e.target.value)}
-                  className="w-full bg-transparent text-xl font-extrabold text-white outline-none placeholder:text-white/20"
-                  placeholder="Course title"
-                />
+            <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-start">
+              <div className="flex min-w-0 flex-1 items-start gap-3">
+                <button
+                  type="button"
+                  onClick={() => { setView("list"); setAddingModule(false); setAddingLessonIdx(null); }}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 text-white/40 transition hover:text-white"
+                >
+                  <span className="material-symbols-outlined text-lg">arrow_back</span>
+                </button>
+                <div className="min-w-0 flex-1">
+                  <input
+                    value={activeOutline.title}
+                    onChange={(e) => updateField("title", e.target.value)}
+                    className="w-full bg-transparent text-lg font-extrabold text-white outline-none placeholder:text-white/20 sm:text-xl"
+                    placeholder="Course title"
+                  />
+                </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 pl-11 lg:min-w-0 lg:flex-1 lg:justify-end lg:pl-0">
+                <button
+                  type="button"
+                  onClick={handleGenerate}
+                  disabled={generating || activeOutline.modules.length > 0}
+                  className="flex min-h-[36px] items-center gap-1.5 rounded-lg bg-cc-primary/10 px-2.5 py-1.5 text-xs font-semibold text-cc-primary transition hover:bg-cc-primary/20 disabled:opacity-50 sm:px-3"
+                >
+                  <span className={`material-symbols-outlined shrink-0 text-sm ${generating ? "animate-spin" : ""}`}>{generating ? "progress_activity" : "auto_awesome"}</span>
+                  {generating ? "Generating..." : (
+                    <>
+                      <span className="sm:hidden">Generate</span>
+                      <span className="hidden sm:inline">Generate Outline</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => toast({ title: "Exported to GHL", description: "Course outline pushed to your GoHighLevel workspace." })}
+                  className="flex min-h-[36px] items-center gap-1.5 rounded-lg bg-emerald-500/10 px-2.5 py-1.5 text-xs font-semibold text-emerald-400 transition hover:bg-emerald-500/20 sm:px-3"
+                >
+                  <span className="material-symbols-outlined shrink-0 text-sm">publish</span>
+                  <span className="sm:hidden">Export</span>
+                  <span className="hidden sm:inline">Export to GHL</span>
+                </button>
                 <span
-                  className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                  className={`inline-flex shrink-0 items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
                     activeOutline.status === "published"
                       ? "bg-emerald-500/10 text-emerald-400"
                       : "bg-amber-500/10 text-amber-400"
@@ -262,19 +314,21 @@ export default function CourseOutlines() {
                   {activeOutline.status}
                 </span>
                 <button
+                  type="button"
                   onClick={togglePublish}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
+                  className={`min-h-[36px] rounded-lg px-2.5 py-1.5 text-xs font-semibold transition sm:px-3 ${
                     activeOutline.status === "draft"
                       ? "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
                       : "bg-amber-500/10 text-amber-400 hover:bg-amber-500/20"
                   }`}
                 >
-                  {activeOutline.status === "draft" ? "Publish" : "Revert to Draft"}
+                  <span className="sm:hidden">{activeOutline.status === "draft" ? "Publish" : "Revert"}</span>
+                  <span className="hidden sm:inline">{activeOutline.status === "draft" ? "Publish" : "Revert to Draft"}</span>
                 </button>
               </div>
             </div>
 
-            <div className="mb-6 rounded-2xl border border-white/8 bg-cc-surface p-5">
+            <div className="mb-6 rounded-2xl border border-white/8 bg-cc-surface p-4 sm:p-5">
               <label className="mb-1.5 block text-xs font-semibold text-white/50">Course Description</label>
               <textarea
                 rows={2}
@@ -298,8 +352,8 @@ export default function CourseOutlines() {
             <div className="space-y-4">
               {activeOutline.modules.map((mod, mi) => (
                 <div key={mod.id} className="rounded-2xl border border-white/8 bg-cc-surface p-5">
-                  <div className="mb-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                  <div className="mb-3 flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex min-w-0 items-center gap-2">
                       <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-cc-primary/10 text-xs font-bold text-cc-primary">
                         {mi + 1}
                       </div>
@@ -317,7 +371,7 @@ export default function CourseOutlines() {
                     <div className="ml-9 space-y-1.5">
                       {mod.lessons.map((l) => (
                         <div key={l.id} className="group flex items-center gap-2 rounded-lg px-3 py-1.5 transition hover:bg-white/[0.03]">
-                          <span className="material-symbols-outlined text-sm text-white/20">drag_indicator</span>
+                          <span className="material-symbols-outlined text-sm text-white/20">menu_book</span>
                           <span className="flex-1 text-sm text-white/70">{l.title}</span>
                           <button
                             onClick={() => removeLesson(mod.id, l.id)}

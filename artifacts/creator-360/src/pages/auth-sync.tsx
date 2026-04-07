@@ -1,4 +1,5 @@
 import { AppLayout } from "@/components/layout/AppLayout";
+import { PAGE_SHELL_WIDE } from "@/lib/page-layout";
 
 const connections = [
   {
@@ -34,23 +35,23 @@ const syncLog = [
 export default function AuthSync() {
   return (
     <AppLayout>
-      <div className="mx-auto w-full max-w-6xl px-8 py-8">
-        <h1 className="text-2xl font-extrabold text-white">Connections & Auth</h1>
+      <div className={PAGE_SHELL_WIDE}>
+        <h1 className="text-xl font-extrabold text-white sm:text-2xl">Connections & Auth</h1>
         <p className="mt-1 text-sm text-white/40">Manage integrations and authentication settings.</p>
 
         <div className="mt-6 space-y-3">
           {connections.map((conn) => (
-            <div key={conn.name} className="flex items-center justify-between rounded-2xl border border-white/8 bg-cc-surface px-6 py-5">
-              <div className="flex items-center gap-4">
-                <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${
+            <div key={conn.name} className="flex flex-col gap-4 rounded-2xl border border-white/8 bg-cc-surface px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <div className="flex min-w-0 items-center gap-4">
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
                   conn.status === "connected" ? "bg-emerald-500/10" : "bg-amber-500/10"
                 }`}>
                   <span className={`material-symbols-outlined text-xl ${
                     conn.status === "connected" ? "text-emerald-400" : "text-amber-400"
                   }`}>{conn.icon}</span>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
                     <p className="font-semibold text-white">{conn.name}</p>
                     <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
                       conn.status === "connected"
@@ -63,9 +64,9 @@ export default function AuthSync() {
                   <p className="mt-0.5 text-xs text-white/30">{conn.detail}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3 sm:justify-end">
                 <span className="rounded-lg bg-white/5 px-2.5 py-1 text-[10px] font-medium text-white/30">{conn.type}</span>
-                <button className="rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/50 transition hover:text-white">
+                <button type="button" className="rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/50 transition hover:text-white">
                   {conn.status === "connected" ? "Configure" : "Set up"}
                 </button>
               </div>
@@ -75,15 +76,15 @@ export default function AuthSync() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-white/8 bg-cc-surface">
-            <div className="border-b border-white/5 px-6 py-4">
+            <div className="border-b border-white/5 px-4 py-4 sm:px-6">
               <h2 className="text-sm font-bold text-white">Sync Log</h2>
             </div>
             <div className="divide-y divide-white/5">
               {syncLog.map((entry) => (
-                <div key={entry.id} className="flex items-center gap-3 px-6 py-3.5">
-                  <div className={`h-1.5 w-1.5 rounded-full ${entry.status === "success" ? "bg-emerald-400" : "bg-amber-400"}`} />
-                  <span className="flex-1 text-sm text-white/60">{entry.event}</span>
-                  <span className="text-xs text-white/20">{entry.time}</span>
+                <div key={entry.id} className="flex items-start gap-3 px-4 py-3.5 sm:px-6">
+                  <div className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${entry.status === "success" ? "bg-emerald-400" : "bg-amber-400"}`} />
+                  <span className="min-w-0 flex-1 text-sm text-white/60">{entry.event}</span>
+                  <span className="shrink-0 text-xs text-white/20">{entry.time}</span>
                 </div>
               ))}
             </div>

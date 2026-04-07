@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { PAGE_SHELL_WIDE } from "@/lib/page-layout";
+import { useToast } from "@/hooks/use-toast";
+import { topUpPacks } from "@/lib/companion-demo-data";
 
 const usageHistory = [
   { id: "gen-spring-enroll", action: "Email sequence generated", asset: "Spring Enrollment Nurture", credits: 18, date: "Today" },
@@ -16,17 +19,18 @@ const plans = [
 ];
 
 export default function Billing() {
+  const { toast } = useToast();
   const [showTopUp, setShowTopUp] = useState(false);
 
   return (
     <AppLayout>
-      <div className="mx-auto w-full max-w-6xl px-8 py-8">
-        <h1 className="text-2xl font-extrabold text-white">Billing & Credits</h1>
+      <div className={PAGE_SHELL_WIDE}>
+        <h1 className="text-xl font-extrabold text-white sm:text-2xl">Billing & Credits</h1>
         <p className="mt-1 text-sm text-white/40">Manage your subscription and AI credit usage.</p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
-          <div className="col-span-2 rounded-2xl border border-white/8 bg-cc-surface p-6">
-            <div className="flex items-center justify-between">
+          <div className="rounded-2xl border border-white/8 bg-cc-surface p-5 sm:p-6 md:col-span-2">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs font-medium uppercase tracking-wider text-white/40">Current Balance</p>
                 <div className="mt-2 flex items-end gap-2">
@@ -35,8 +39,9 @@ export default function Billing() {
                 </div>
               </div>
               <button
+                type="button"
                 onClick={() => setShowTopUp(!showTopUp)}
-                className="rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110"
+                className="w-full shrink-0 rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110 sm:w-auto"
               >
                 Buy credits
               </button>
@@ -50,7 +55,7 @@ export default function Billing() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/8 bg-cc-surface p-6">
+          <div className="rounded-2xl border border-white/8 bg-cc-surface p-5 sm:p-6">
             <p className="text-xs font-medium uppercase tracking-wider text-white/40">Current Plan</p>
             <p className="mt-2 text-2xl font-extrabold text-white">Pro</p>
             <p className="text-sm text-white/40">$79/month</p>
@@ -67,12 +72,12 @@ export default function Billing() {
           <div className="mt-4 rounded-2xl border border-cc-primary/20 bg-cc-primary/5 p-6">
             <h3 className="text-sm font-bold text-white">Add more credits</h3>
             <div className="mt-4 grid gap-3 md:grid-cols-3">
-              {[
-                { amount: 100, price: 9 },
-                { amount: 500, price: 39 },
-                { amount: 1000, price: 69 },
-              ].map((pack) => (
-                <button key={pack.amount} className="rounded-xl border border-white/10 bg-white/5 p-4 text-left transition hover:border-cc-primary/40">
+              {topUpPacks.map((pack) => (
+                <button
+                  key={pack.amount}
+                  onClick={() => { toast({ title: `${pack.amount} credits added`, description: `Charged $${pack.price} to Visa •••• 4242` }); setShowTopUp(false); }}
+                  className="rounded-xl border border-white/10 bg-white/5 p-4 text-left transition hover:border-cc-primary/40"
+                >
                   <p className="text-lg font-extrabold text-white">{pack.amount} credits</p>
                   <p className="text-sm text-white/40">${pack.price} one-time</p>
                 </button>
@@ -83,13 +88,13 @@ export default function Billing() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_360px]">
           <div className="rounded-2xl border border-white/8 bg-cc-surface">
-            <div className="flex items-center justify-between border-b border-white/5 px-6 py-4">
+            <div className="flex flex-col gap-2 border-b border-white/5 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <h2 className="text-sm font-bold text-white">Usage History</h2>
               <span className="text-xs text-white/30">This billing cycle</span>
             </div>
             <div className="divide-y divide-white/5">
               {usageHistory.map((item) => (
-                <div key={item.id} className="flex items-center gap-4 px-6 py-3.5">
+                <div key={item.id} className="flex items-center gap-3 px-4 py-3.5 sm:gap-4 sm:px-6">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cc-primary/10">
                     <span className="material-symbols-outlined text-sm text-cc-primary">auto_awesome</span>
                   </div>
@@ -119,7 +124,16 @@ export default function Billing() {
                       </div>
                       <div className="text-right">
                         <p className="text-sm font-bold text-white">${plan.price}</p>
-                        {plan.current && <span className="text-[10px] font-semibold text-cc-primary">Current</span>}
+                        {plan.current ? (
+                          <span className="text-[10px] font-semibold text-cc-primary">Current</span>
+                        ) : (
+                          <button
+                            onClick={() => toast({ title: `Upgrade to ${plan.name}`, description: "Redirecting to Stripe checkout..." })}
+                            className="text-[10px] font-semibold text-cc-primary hover:underline"
+                          >
+                            Upgrade
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -136,7 +150,7 @@ export default function Billing() {
                   <p className="text-[10px] text-white/30">Expires 12/27</p>
                 </div>
               </div>
-              <button className="mt-3 text-xs font-medium text-cc-primary hover:underline">Update payment method</button>
+              <button onClick={() => toast({ title: "Redirecting to Stripe...", description: "You can update your card in the Stripe portal." })} className="mt-3 text-xs font-medium text-cc-primary hover:underline">Update payment method</button>
             </div>
           </div>
         </div>

@@ -161,6 +161,23 @@ export const billingDecision = {
   ],
 };
 
+export const creditCosts = {
+  emailSequence: 18,
+  singleEmail: 6,
+  landingPage: 12,
+  sms: 8,
+  leadMagnet: 10,
+  website: 24,
+  courseOutline: 15,
+  marketResearch: 14,
+} as const;
+
+export const topUpPacks = [
+  { amount: 100, price: 9 },
+  { amount: 500, price: 39 },
+  { amount: 1000, price: 69 },
+] as const;
+
 export const creditBundles = [
   { label: "Starter grant", value: "250 credits", detail: "Included with the core subscription each cycle" },
   { label: "Sequence draft", value: "18 credits", detail: "Generate a 5-email nurture campaign" },

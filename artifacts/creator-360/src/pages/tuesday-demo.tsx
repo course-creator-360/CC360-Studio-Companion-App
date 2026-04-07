@@ -1,22 +1,23 @@
 import { Link } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { PAGE_SHELL } from "@/lib/page-layout";
 import { weeklyDefinitionOfDone, demoAgenda, nextSprint } from "@/lib/companion-demo-data";
 
 export default function TuesdayDemo() {
   return (
     <AppLayout>
-      <div className="mx-auto w-full max-w-5xl px-8 py-8">
-        <div className="mb-8 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cc-primary/10">
+      <div className={PAGE_SHELL}>
+        <div className="mb-8 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cc-primary/10">
             <span className="material-symbols-outlined text-xl text-cc-primary">slideshow</span>
           </div>
-          <div>
-            <h1 className="text-2xl font-extrabold text-white">Tuesday Walkthrough</h1>
+          <div className="min-w-0">
+            <h1 className="text-xl font-extrabold text-white sm:text-2xl">Tuesday Walkthrough</h1>
             <p className="text-sm text-white/40">Week of April 7, 2026</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/8 bg-cc-surface p-6 mb-6">
+        <div className="mb-6 rounded-2xl border border-white/8 bg-cc-surface p-4 sm:p-6">
           <h2 className="text-sm font-bold text-white mb-4">Demo Agenda</h2>
           <div className="space-y-2">
             {demoAgenda.map((item, i) => {

@@ -1,16 +1,17 @@
 import { Link } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { PAGE_SHELL_XL } from "@/lib/page-layout";
 import { featuredAsset } from "@/lib/companion-demo-data";
 
 const recentAssets = [
-  { name: "Spring Enrollment Nurture", type: "Email Sequence", status: "Draft", credits: 18, updatedAt: "2 hours ago" },
-  { name: "Webinar Follow-Up", type: "Email", status: "Imported", credits: 6, updatedAt: "Yesterday" },
-  { name: "Course Launch Teaser", type: "Landing Page", status: "In Review", credits: 24, updatedAt: "3 days ago" },
+  { name: "Spring Enrollment Nurture", type: "Email Sequence", status: "Draft", credits: 18, updatedAt: "2 hours ago", href: "/studio/create" },
+  { name: "Webinar Follow-Up", type: "Email", status: "Imported", credits: 6, updatedAt: "Yesterday", href: "/studio/create" },
+  { name: "Course Launch Teaser", type: "Landing Page", status: "In Review", credits: 24, updatedAt: "3 days ago", href: "/studio/landing-pages" },
 ];
 
 const quickActions = [
   { label: "New Email Sequence", icon: "mail", href: "/studio/create", color: "bg-blue-500/10 text-blue-400" },
-  { label: "New Landing Page", icon: "web", href: "/studio/create", color: "bg-purple-500/10 text-purple-400" },
+  { label: "New Landing Page", icon: "web", href: "/studio/landing-pages", color: "bg-purple-500/10 text-purple-400" },
   { label: "Import to GHL", icon: "publish", href: "/cc360", color: "bg-emerald-500/10 text-emerald-400" },
   { label: "Buy Credits", icon: "add_circle", href: "/billing", color: "bg-amber-500/10 text-amber-400" },
 ];
@@ -18,21 +19,21 @@ const quickActions = [
 export default function Dashboard() {
   return (
     <AppLayout>
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-8 py-8">
-        <div className="flex items-end justify-between">
-          <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-white">Good morning, Canyon</h1>
+      <div className={PAGE_SHELL_XL}>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Good morning, Canyon</h1>
             <p className="mt-1 text-sm text-white/50">Here's what's happening with your content today.</p>
           </div>
           <Link href="/studio">
-            <span className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110">
+            <span className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-cc-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110 sm:w-auto">
               <span className="material-symbols-outlined text-lg">add</span>
               Create Asset
             </span>
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-2xl border border-white/8 bg-cc-surface p-5">
             <div className="flex items-center justify-between">
               <p className="text-xs font-medium uppercase tracking-wider text-white/40">Credit Balance</p>
@@ -75,14 +76,16 @@ export default function Dashboard() {
 
         <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
           <div className="rounded-2xl border border-white/8 bg-cc-surface">
-            <div className="flex items-center justify-between border-b border-white/5 px-6 py-4">
+            <div className="flex flex-col gap-2 border-b border-white/5 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <h2 className="text-sm font-bold text-white">Recent Assets</h2>
-              <button className="text-xs font-medium text-cc-primary hover:underline">View all</button>
+              <Link href="/studio">
+                <span className="cursor-pointer text-xs font-medium text-cc-primary hover:underline">View all</span>
+              </Link>
             </div>
             <div className="divide-y divide-white/5">
               {recentAssets.map((asset) => (
-                <Link key={asset.name} href="/cc360">
-                  <div className="flex cursor-pointer items-center gap-4 px-6 py-4 transition hover:bg-white/[0.02]">
+                <Link key={asset.name} href={asset.href}>
+                  <div className="flex cursor-pointer items-center gap-3 px-4 py-4 transition hover:bg-white/[0.02] sm:gap-4 sm:px-6">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cc-primary/10">
                       <span className="material-symbols-outlined text-lg text-cc-primary">
                         {asset.type === "Email Sequence" ? "mail" : asset.type === "Email" ? "draft" : "web"}

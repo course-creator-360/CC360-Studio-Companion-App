@@ -15,7 +15,15 @@ import AuthSync from "@/pages/auth-sync";
 import Billing from "@/pages/billing";
 import TuesdayDemo from "@/pages/tuesday-demo";
 import MarketResearch from "@/pages/market-research";
+import ICPCreator from "@/pages/icp";
 import CourseOutlines from "@/pages/course-outlines";
+import Funnels from "@/pages/funnels";
+import ShortForm from "@/pages/short-form";
+import LongForm from "@/pages/long-form";
+import Resources from "@/pages/resources";
+import ResourcesTemplates from "@/pages/resources-templates";
+import ResourcesCreatorPack from "@/pages/resources-creator-pack";
+import CommunityHub from "@/pages/community-hub";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,9 +45,21 @@ function Router() {
       <Route path="/studio/create" component={CreateAsset} />
       <Route path="/studio/research" component={MarketResearch} />
       <Route path="/studio/courses" component={CourseOutlines} />
+      <Route path="/studio/funnels" component={Funnels} />
+      <Route path="/studio/short-form" component={ShortForm} />
+      <Route path="/studio/long-form" component={LongForm} />
+      <Route path="/studio/icp" component={ICPCreator} />
       <Route path="/studio/landing-pages" component={LandingPages} />
       <Route path="/studio/lead-magnets" component={LeadMagnets} />
       <Route path="/studio/websites" component={Websites} />
+
+      {/* Resources hub + sub-routes */}
+      <Route path="/resources" component={Resources} />
+      <Route path="/resources/templates" component={ResourcesTemplates} />
+      <Route path="/resources/creator-pack" component={ResourcesCreatorPack} />
+
+      {/* Community hub */}
+      <Route path="/community" component={CommunityHub} />
 
       {/* Billing */}
       <Route path="/billing" component={Billing} />

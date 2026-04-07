@@ -1,12 +1,16 @@
 import { Link } from "wouter";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+
+const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 export default function Login() {
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
 
   const handleSend = () => {
-    if (email) setSent(true);
+    if (isValidEmail(email)) setSent(true);
   };
 
   return (
@@ -31,7 +35,7 @@ export default function Login() {
         </div>
       </div>
 
-      <div className="flex flex-1 items-center justify-center px-8">
+      <div className="flex flex-1 items-center justify-center px-4 sm:px-8">
         <div className="w-full max-w-sm">
           <div className="mb-8 flex items-center gap-3 lg:hidden">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cc-primary">
@@ -87,7 +91,7 @@ export default function Login() {
                 <button
                   onClick={handleSend}
                   className="w-full rounded-xl bg-cc-primary py-3 text-sm font-bold text-white transition hover:brightness-110 disabled:opacity-40"
-                  disabled={!email}
+                  disabled={!isValidEmail(email)}
                 >
                   Send magic link
                 </button>
@@ -97,7 +101,10 @@ export default function Login() {
                   <div className="relative flex justify-center"><span className="bg-cc-background px-3 text-[10px] uppercase tracking-widest text-white/20">or</span></div>
                 </div>
 
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] py-3 text-sm font-medium text-white/60 transition hover:bg-white/5 hover:text-white">
+                <button
+                  onClick={() => toast({ title: "SSO coming soon", description: "Shared OIDC login is being validated with the agency." })}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] py-3 text-sm font-medium text-white/60 transition hover:bg-white/5 hover:text-white"
+                >
                   <span className="material-symbols-outlined text-lg">key</span>
                   Continue with SSO
                 </button>

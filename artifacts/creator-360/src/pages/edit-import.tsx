@@ -32,17 +32,17 @@ export default function EditImport() {
 
   return (
     <AppLayout>
-      <div className="flex h-[calc(100vh-4rem)] w-full">
-        <div className="flex flex-1 flex-col border-r border-white/5">
-          <div className="flex items-center justify-between border-b border-white/5 px-6 py-3">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-lg text-white/30">mail</span>
-              <div>
+      <div className="flex min-h-0 w-full min-w-0 flex-col lg:h-[calc(100vh-4rem)] lg:flex-row">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col border-white/5 lg:border-r">
+          <div className="flex flex-col gap-3 border-b border-white/5 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="material-symbols-outlined shrink-0 text-lg text-white/30">mail</span>
+              <div className="min-w-0">
                 <p className="text-sm font-semibold text-white">Email 1 of 5</p>
                 <p className="text-[10px] text-white/30">Spring Enrollment Nurture</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 flex-wrap items-center gap-2">
               <button className="rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/50 transition hover:text-white">
                 <span className="material-symbols-outlined text-sm">undo</span>
               </button>
@@ -56,8 +56,8 @@ export default function EditImport() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6">
-            <div className="mx-auto max-w-2xl">
+          <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-6">
+            <div className="mx-auto max-w-2xl min-w-0">
               <div className="mb-4">
                 <label htmlFor="subject" className="mb-1 block text-[10px] font-semibold uppercase tracking-widest text-white/30">Subject</label>
                 <input id="subject" value={subject} onChange={(e) => setSubject(e.target.value)}
@@ -73,8 +73,8 @@ export default function EditImport() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between border-t border-white/5 px-6 py-3">
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-3 border-t border-white/5 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="flex min-w-0 flex-wrap gap-2">
               <button className="rounded-lg bg-white/5 px-3 py-1.5 text-xs text-white/40 transition hover:text-white">
                 <span className="material-symbols-outlined text-sm">navigate_before</span>
               </button>
@@ -85,16 +85,16 @@ export default function EditImport() {
                 <span className="material-symbols-outlined text-sm">navigate_next</span>
               </button>
             </div>
-            <p className="text-[10px] text-white/20">Auto-saved</p>
+            <p className="text-center text-[10px] text-white/20 sm:text-right">Auto-saved</p>
           </div>
         </div>
 
-        <div className="flex w-[340px] shrink-0 flex-col">
-          <div className="border-b border-white/5 px-5 py-3">
+        <div className="flex w-full shrink-0 flex-col border-t border-white/5 lg:w-[340px] lg:border-l lg:border-t-0">
+          <div className="border-b border-white/5 px-4 py-3 sm:px-5">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white/40">GHL Import</h3>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-5 space-y-4">
+          <div className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5">
             <div className={`rounded-2xl border p-4 ${imported ? "border-emerald-500/20 bg-emerald-500/5" : "border-white/8 bg-cc-surface"}`}>
               <div className="flex items-center gap-3">
                 <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${imported ? "bg-emerald-500/10" : "bg-white/5"}`}>
